@@ -1,0 +1,35 @@
+:root{
+  /* ---- Spacing scale ---- */
+  --sp-1:4px;
+  --sp-2:8px;
+  --sp-3:12px;
+  --sp-4:16px;
+  --sp-5:24px;
+  --sp-6:32px;
+  --sp-7:48px;
+  --sp-8:64px;
+  --sp-9:96px;
+
+  /* Print/deck rhythm: 0.5in min margin, 0.3-0.5in between blocks */
+  --margin-page:48px;      /* ~0.5in */
+  --gap-block:32px;        /* ~0.35in */
+
+  /* ---- Radii ---- */
+  --radius-sm:8px;
+  --radius-card:14px;      /* cards: 12-14px */
+  --radius-chip:12px;      /* navy icon chips (rounded square) */
+  --radius-pill:999px;     /* buttons / capsules */
+
+  /* ---- Borders ---- */
+  --border-hairline:1px;
+
+  /* ---- Shadows (soft, restrained) ---- */
+  --shadow-card:0 1px 2px rgba(22,51,93,0.04), 0 8px 24px rgba(22,51,93,0.06);
+  --shadow-raise:0 4px 12px rgba(22,51,93,0.08), 0 16px 40px rgba(22,51,93,0.10);
+  --shadow-chip:0 2px 6px rgba(22,51,93,0.18);
+
+  /* ---- Motion ---- */
+  --ease-standard:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --dur-fast:120ms; /* @kind other */
+  --dur-base:200ms; /* @kind other */
+}

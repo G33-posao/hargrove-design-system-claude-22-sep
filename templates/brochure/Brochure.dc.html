@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Brochure" description="Hargrove print brochure — a PARTS PALETTE, not a document to overwrite. Read guidelines/using-templates.md first." -->
+<!--
+  THIS IS A PALETTE. Do not replace its text word-for-word.
+
+  Read the source document FIRST, note its real structure, decide the composition
+  for THIS piece, then take only the parts below that the source calls for.
+
+  · The source dictates structure — headings, their exact wording and CASING,
+    their order, and how many sections and pages there are.
+  · This file dictates styling — margins (80px on all four sides, identical on
+    every page; content follows the deeper margin), 10pt body, 11pt eyebrows,
+    zero-padded pagination, footer, print geometry.
+  · Footer pattern: Hargrove Firm · [Partner] · [Doc type], zero-padded number
+    right. Drop the partner segment when the piece has no partner.
+  · Cover title FILLS THE MEASURE: ≈60px Inter ExtraBold, ALL CAPS, line-height
+    1.02, bottom-anchored, as many lines as it takes across the full measure.
+    Air above the title means the type is too small. Cover photo, when there is
+    one: full-bleed, mix-blend-mode:multiply, opacity:.4 over navy (see
+    guidelines/case-study-lessons-weg.md B1–B3).
+  · EVERY element here is optional. No eyebrow in the source → delete the
+    eyebrow. Four sections → four pages, not six. Deleting parts is normal.
+  · Never split a source heading into eyebrow + headline.
+  · Vary the composition. Two brochures must not look like the same document
+    with different words.
+
+  Full diagnosis of what goes wrong otherwise: guidelines/using-templates.md
+-->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>doc-page:not(:defined){visibility:hidden}.page{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;box-sizing:border-box;display:flex;flex-direction:column}</style></helmet>
+<doc-page>
+<section class="page" style="background:#16335D;padding:80px;justify-content:flex-end;position:relative">
+  <span style="position:absolute;top:80px;left:80px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 338" fill="#FFFFFF" style="width:1.9in;height:auto;display:block"><polygon fill="#FFFFFF" points="32.8 21.3 11.2 21.3 11.2 1 0 1 0 51.3 11.2 51.3 11.2 31.1 32.8 31.1 32.8 51.3 44 51.3 44 1 32.8 1 32.8 21.3"></polygon><path fill="#FFFFFF" d="M69.8,1l-20.5,50.3h11.1l4.1-10.6h20l4.1,10.6h11.5L79.8,1h-10ZM67.9,32.1l3-7.7c.4-1.1.8-2.2,1.3-3.4.4-1.1.9-2.3,1.3-3.6.4-1.2.8-2.4,1.1-3.6.4,1.1.8,2.3,1.2,3.5.4,1.3.9,2.6,1.3,3.8.4,1.2.8,2.2,1.1,2.9l3.1,7.9h-13.3Z"></path><path fill="#FFFFFF" d="M137.2,31.1c2.6-1.4,4.7-3.4,6.2-5.9,1.5-2.5,2.3-5.2,2.3-8.2s-.8-5.8-2.3-8.2c-1.5-2.4-3.6-4.3-6.2-5.7-2.6-1.4-5.6-2.1-8.8-2.1h-23.1v50.3h10.8v-18h8.2l10.5,18h13c0,0-11.8-19.6-11.8-19.6.4-.2.8-.4,1.2-.6ZM133.8,21.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.8v-14.1h10.4c1.6,0,3.1.3,4.3.9,1.2.6,2.2,1.4,2.8,2.5.6,1.1,1,2.3,1,3.7s-.3,2.6-.8,3.6Z"></path><path fill="#FFFFFF" d="M203.3,25.8c0-.8-.1-1.4-.2-1.9h-24.1v9h13.4c0,1.2-.3,2.4-.9,3.5-.6,1.2-1.5,2.2-2.6,3.1-1.1.9-2.4,1.6-3.9,2-1.5.5-3,.7-4.7.7s-4.5-.4-6.6-1.3c-2-.8-3.8-2-5.3-3.4-1.5-1.5-2.7-3.2-3.6-5.2-.9-2-1.3-4.1-1.3-6.4s.4-4.4,1.2-6.4c.8-2,2-3.7,3.5-5.1,1.5-1.4,3.2-2.6,5.2-3.4,2-.8,4.1-1.2,6.4-1.2s3.2.2,4.8.7c1.6.5,3,1.1,4.4,1.9,1.4.8,2.7,1.9,4,3.1l6.9-7c-1.4-1.6-3.1-3.1-5.2-4.3-2.1-1.2-4.4-2.2-6.9-2.9-2.5-.7-5.2-1.1-8-1.1-4,0-7.7.6-11.1,1.9-3.4,1.3-6.3,3.1-8.8,5.4-2.5,2.3-4.4,5.1-5.8,8.2-1.4,3.1-2,6.5-2,10.2s.7,7.1,2,10.3c1.3,3.2,3.2,5.9,5.6,8.3,2.4,2.3,5.3,4.2,8.7,5.5,3.4,1.3,7,2,11.1,2s6.6-.5,9.5-1.6c2.9-1.1,5.5-2.6,7.6-4.6,2.2-2,3.8-4.3,5.1-7,1.2-2.7,1.8-5.7,1.8-9s0-1,0-1.8c0-.7,0-1.5-.2-2.3Z"></path><path fill="#FFFFFF" d="M243.2,31.1c2.6-1.4,4.7-3.4,6.2-5.9,1.5-2.5,2.3-5.2,2.3-8.2s-.8-5.8-2.3-8.2c-1.5-2.4-3.6-4.3-6.2-5.7-2.6-1.4-5.6-2.1-8.8-2.1h-23.1v50.3h10.8v-18h8.2l10.5,18h13c0,0-11.8-19.6-11.8-19.6.4-.2.8-.4,1.2-.6ZM239.8,21.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.8v-14.1h10.4c1.6,0,3.1.3,4.3.9,1.2.6,2.2,1.4,2.8,2.5.6,1.1,1,2.3,1,3.7s-.3,2.6-.8,3.6Z"></path><path fill="#FFFFFF" d="M303.6,7.4c-2.4-2.3-5.2-4.2-8.4-5.5-3.2-1.3-6.7-1.9-10.6-1.9s-7.3.6-10.6,1.9c-3.2,1.3-6,3.1-8.5,5.4-2.4,2.3-4.3,5.1-5.5,8.2-1.3,3.2-1.9,6.6-1.9,10.4s.6,7.2,1.9,10.4c1.3,3.2,3.1,5.9,5.5,8.3,2.4,2.3,5.2,4.1,8.5,5.4,3.2,1.3,6.8,1.9,10.6,1.9s7.3-.6,10.5-1.9c3.2-1.3,6-3.1,8.4-5.5,2.4-2.3,4.3-5.1,5.5-8.3,1.3-3.2,1.9-6.6,1.9-10.3s-.6-7.2-1.9-10.3c-1.3-3.2-3.1-5.9-5.5-8.3ZM298.6,32.3c-.8,1.9-1.8,3.6-3.2,5-1.3,1.4-2.9,2.5-4.8,3.3-1.8.8-3.9,1.2-6.1,1.2s-4.2-.4-6-1.2c-1.8-.8-3.5-1.9-4.8-3.3-1.4-1.4-2.4-3.1-3.2-5-.7-1.9-1.1-4-1.1-6.3s.4-4.4,1.1-6.3c.7-1.9,1.8-3.6,3.2-5,1.4-1.4,3-2.5,4.8-3.3,1.8-.8,3.8-1.2,6-1.2s4.3.4,6.1,1.2c1.8.8,3.4,1.9,4.8,3.3s2.4,3.1,3.2,5c.8,1.9,1.2,4,1.2,6.3s-.4,4.4-1.2,6.3Z"></path><path fill="#FFFFFF" d="M342.6,28.2c-.7,1.9-1.4,3.5-1.9,4.9-.5,1.4-1,2.8-1.3,4,0,.1,0,.2,0,.3-.2-.7-.5-1.5-.7-2.2-.3-1-.7-2-1.1-3.2-.4-1.1-.9-2.4-1.5-3.9l-10.9-27.2h-11.8l20.8,50.3h9.8L364.7,1h-11.8l-10.3,27.2Z"></path><polygon fill="#FFFFFF" points="381.2 41.8 381.2 30.2 401.9 30.2 401.9 21 381.2 21 381.2 10.5 405.5 10.5 405.5 1 370.3 1 370.3 51.3 406 51.3 406 41.8 381.2 41.8"></polygon>
+</svg></span>
+  <div style="position:absolute;top:2.1in;left:80px;right:80px;height:2.9in;background:#1B3A68;border:1px solid #40587A;border-radius:10pt;display:flex;align-items:center;justify-content:center"><span style="color:#7E97BC;font-size:10pt;font-weight:600;text-transform:uppercase;letter-spacing:.18em">Cover image</span></div>
+  <div style="color:#C9D6EA;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.18em">For clients of our advisor partners</div>
+  <!-- Cover title: fill the measure — ≈60px ExtraBold caps, bottom-anchored (case-study-lessons-weg.md B3) --><h1 style="color:#FFFFFF;font-weight:800;font-size:60px;line-height:1.02;text-transform:uppercase;margin:14pt 0 0">Bespoke estate planning: delivered online</h1>
+  <p style="color:#C9D6EA;font-weight:400;font-size:13pt;line-height:1.5;margin:22pt 0 0;max-width:4.6in">The accountability of a top-tier law firm. The visibility of a real-time platform. Fixed fee pricing — available nationally.</p>
+  <div style="color:#9FC2F0;font-size:10pt;margin-top:30pt;padding-top:14pt;border-top:1px solid #40587A">hargrovefirm.com</div>
+</section>
+<section class="page" style="background:#FFFFFF;padding:80px">
+  <div style="color:#999999;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.18em">About Hargrove Firm</div>
+  <h2 style="color:#16335D;font-weight:600;font-size:30pt;line-height:1.1;margin:12pt 0 0">A licensed attorney stands behind every plan.</h2>
+  <p style="color:#696969;font-size:10pt;line-height:1.75;margin:20pt 0 0">Hargrove Firm is a law firm built by estate planning attorneys who knew the process from the inside — and knew what was wrong with it. For too many advisors and clients alike, it was slow, opaque, and came with a final bill that was an unpleasant surprise.</p>
+  <p style="color:#696969;font-size:10pt;line-height:1.75;margin:14pt 0 0">Hargrove Firm combines the accountability of a premier legal practice with the transparency of a real-time platform — at a fixed price, available to advisors and clients nationwide.</p>
+  <div style="color:#999999;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.18em;margin-top:40pt">A predictable process</div>
+  <h3 style="color:#16335D;font-weight:600;font-size:22pt;margin:12pt 0 0">Four meetings, start to finish</h3>
+  <div style="display:flex;flex-direction:column;gap:26pt;margin-top:28pt">
+    <div style="display:flex;gap:14pt;align-items:flex-start"><div style="flex:none;background:#16335D;border-radius:6pt;width:34pt;height:24pt"><svg viewBox="0 0 34 24" style="display:block;width:100%;height:100%"><text x="17" y="12" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-family="Inter" font-weight="700" font-size="12">01</text></svg></div><div><div style="color:#16335D;font-weight:700;font-size:10pt">Initial Consultation</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:6pt">A complimentary meeting to explore the client's estate planning needs.</div></div></div>
+    <div style="display:flex;gap:14pt;align-items:flex-start"><div style="flex:none;background:#16335D;border-radius:6pt;width:34pt;height:24pt"><svg viewBox="0 0 34 24" style="display:block;width:100%;height:100%"><text x="17" y="12" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-family="Inter" font-weight="700" font-size="12">02</text></svg></div><div><div style="color:#16335D;font-weight:700;font-size:10pt">Plan Design Meeting</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:6pt">Key decisions are made and confirmed, and the drafts are prepared.</div></div></div>
+    <div style="display:flex;gap:14pt;align-items:flex-start"><div style="flex:none;background:#16335D;border-radius:6pt;width:34pt;height:24pt"><svg viewBox="0 0 34 24" style="display:block;width:100%;height:100%"><text x="17" y="12" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-family="Inter" font-weight="700" font-size="12">03</text></svg></div><div><div style="color:#16335D;font-weight:700;font-size:10pt">Wrap-Up Meeting</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:6pt">The legal team walks through the documents and confirms funding guidance.</div></div></div>
+    <div style="display:flex;gap:14pt;align-items:flex-start"><div style="flex:none;background:#16335D;border-radius:6pt;width:34pt;height:24pt"><svg viewBox="0 0 34 24" style="display:block;width:100%;height:100%"><text x="17" y="12" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-family="Inter" font-weight="700" font-size="12">04</text></svg></div><div><div style="color:#16335D;font-weight:700;font-size:10pt">Execution &amp; Shipment</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:6pt">The client executes their plan through convenient at-home notarization.</div></div></div>
+  </div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;color:#999999;font-size:9pt;border-top:1px solid #E3E7EE;padding-top:10pt"><span>Hargrove Firm · [Partner] · Client Brochure</span><span>02</span></div>
+</section>
+<section class="page" style="background:#F8F8F8;padding:80px">
+  <div style="color:#999999;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.18em">Pricing</div>
+  <h2 style="color:#16335D;font-weight:600;font-size:30pt;margin:12pt 0 0">Fixed fee. No surprises.</h2>
+  <div style="display:grid;grid-auto-rows:1fr;gap:14pt;margin-top:26pt">
+    <div style="background:#FFFFFF;border:1px solid #E3E7EE;border-radius:11pt;padding:24pt;display:grid;grid-template-columns:1fr auto;align-items:center;gap:22pt">
+      <div style="text-align:left"><div style="color:#999999;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.16em">Essential Planning Package</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:10pt">Best for simple will-based or trust-based plans with straightforward asset disposition.</div></div>
+      <div style="color:#16335D;font-weight:800;font-size:24pt;text-align:right;white-space:nowrap">$3,000</div>
+    </div>
+    <div style="background:#16335D;border:1px solid #16335D;border-radius:11pt;padding:24pt;display:grid;grid-template-columns:1fr auto;align-items:center;gap:22pt">
+      <div style="text-align:left"><div style="color:#9FC2F0;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.16em">Advanced Planning Package</div><div style="color:#C9D6EA;font-size:10pt;line-height:1.6;margin-top:10pt">Best for clients who want to asset-protect what they leave to kids and grandkids.</div></div>
+      <div style="color:#FFFFFF;font-weight:800;font-size:24pt;text-align:right;white-space:nowrap">$4,000</div>
+    </div>
+    <div style="background:#FFFFFF;border:1px solid #E3E7EE;border-radius:11pt;padding:24pt;display:grid;grid-template-columns:1fr auto;align-items:center;gap:22pt">
+      <div style="text-align:left"><div style="color:#999999;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.16em">Private Wealth Counsel</div><div style="color:#696969;font-size:10pt;line-height:1.6;margin-top:10pt">Best for families with significant wealth requiring sophisticated estate and tax planning. Initial fee.</div></div>
+      <div style="color:#16335D;font-weight:800;font-size:24pt;text-align:right;white-space:nowrap">$6,000</div>
+    </div>
+  </div>
+  <div style="color:#16335D;font-weight:700;font-size:10pt;margin-top:22pt">Every package includes</div>
+  <div style="display:flex;flex-direction:column;gap:14pt;margin-top:18pt">
+    <div style="display:flex;gap:10pt;align-items:center"><span style="flex:none;width:16pt;height:16pt;border-radius:4pt;background:#16335D;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style="color:#696969;font-size:10pt">Spouse's plan at no additional cost</span></div>
+    <div style="display:flex;gap:10pt;align-items:center"><span style="flex:none;width:16pt;height:16pt;border-radius:4pt;background:#16335D;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style="color:#696969;font-size:10pt">At-home notarization</span></div>
+    <div style="display:flex;gap:10pt;align-items:center"><span style="flex:none;width:16pt;height:16pt;border-radius:4pt;background:#16335D;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style="color:#696969;font-size:10pt">Virtual meetings</span></div>
+    <div style="display:flex;gap:10pt;align-items:center"><span style="flex:none;width:16pt;height:16pt;border-radius:4pt;background:#16335D;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style="color:#696969;font-size:10pt">Secure document fulfillment</span></div>
+    <div style="display:flex;gap:10pt;align-items:center"><span style="flex:none;width:16pt;height:16pt;border-radius:4pt;background:#16335D;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span style="color:#696969;font-size:10pt">Execution support &amp; funding guidance</span></div>
+  </div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;color:#999999;font-size:9pt;border-top:1px solid #E3E7EE;padding-top:10pt"><span>Hargrove Firm · [Partner] · Client Brochure</span><span>03</span></div>
+</section>
+<section class="page" style="background:#16335D;padding:80px;justify-content:flex-end;position:relative">
+  <div style="color:#C9D6EA;font-weight:600;font-size:11pt;text-transform:uppercase;letter-spacing:.18em">Get started</div>
+  <h2 style="color:#FFFFFF;font-weight:800;font-size:40pt;line-height:1.06;text-transform:uppercase;margin:16pt 0 0">One price. No surprises.</h2>
+  <p style="color:#C9D6EA;font-size:13pt;line-height:1.5;margin:24pt 0 0;max-width:4.4in">Talk to your advisor about a referral, or reach our legal team directly.</p>
+  <div style="margin-top:34pt;padding-top:22pt;border-top:1px solid #40587A;color:#C9D6EA;font-size:10pt;line-height:2.1">
+    hargrovefirm.com<br>support@hargrovefirm.com<br>(877) 564-8716<br>12910 Shelbyville Road, Suite 124, Louisville, Kentucky 40243
+  </div>
+  <span style="display:block;margin-top:40pt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 338" fill="#FFFFFF" style="width:1.7in;height:auto;display:block"><polygon fill="#FFFFFF" points="32.8 21.3 11.2 21.3 11.2 1 0 1 0 51.3 11.2 51.3 11.2 31.1 32.8 31.1 32.8 51.3 44 51.3 44 1 32.8 1 32.8 21.3"></polygon><path fill="#FFFFFF" d="M69.8,1l-20.5,50.3h11.1l4.1-10.6h20l4.1,10.6h11.5L79.8,1h-10ZM67.9,32.1l3-7.7c.4-1.1.8-2.2,1.3-3.4.4-1.1.9-2.3,1.3-3.6.4-1.2.8-2.4,1.1-3.6.4,1.1.8,2.3,1.2,3.5.4,1.3.9,2.6,1.3,3.8.4,1.2.8,2.2,1.1,2.9l3.1,7.9h-13.3Z"></path><path fill="#FFFFFF" d="M137.2,31.1c2.6-1.4,4.7-3.4,6.2-5.9,1.5-2.5,2.3-5.2,2.3-8.2s-.8-5.8-2.3-8.2c-1.5-2.4-3.6-4.3-6.2-5.7-2.6-1.4-5.6-2.1-8.8-2.1h-23.1v50.3h10.8v-18h8.2l10.5,18h13c0,0-11.8-19.6-11.8-19.6.4-.2.8-.4,1.2-.6ZM133.8,21.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.8v-14.1h10.4c1.6,0,3.1.3,4.3.9,1.2.6,2.2,1.4,2.8,2.5.6,1.1,1,2.3,1,3.7s-.3,2.6-.8,3.6Z"></path><path fill="#FFFFFF" d="M203.3,25.8c0-.8-.1-1.4-.2-1.9h-24.1v9h13.4c0,1.2-.3,2.4-.9,3.5-.6,1.2-1.5,2.2-2.6,3.1-1.1.9-2.4,1.6-3.9,2-1.5.5-3,.7-4.7.7s-4.5-.4-6.6-1.3c-2-.8-3.8-2-5.3-3.4-1.5-1.5-2.7-3.2-3.6-5.2-.9-2-1.3-4.1-1.3-6.4s.4-4.4,1.2-6.4c.8-2,2-3.7,3.5-5.1,1.5-1.4,3.2-2.6,5.2-3.4,2-.8,4.1-1.2,6.4-1.2s3.2.2,4.8.7c1.6.5,3,1.1,4.4,1.9,1.4.8,2.7,1.9,4,3.1l6.9-7c-1.4-1.6-3.1-3.1-5.2-4.3-2.1-1.2-4.4-2.2-6.9-2.9-2.5-.7-5.2-1.1-8-1.1-4,0-7.7.6-11.1,1.9-3.4,1.3-6.3,3.1-8.8,5.4-2.5,2.3-4.4,5.1-5.8,8.2-1.4,3.1-2,6.5-2,10.2s.7,7.1,2,10.3c1.3,3.2,3.2,5.9,5.6,8.3,2.4,2.3,5.3,4.2,8.7,5.5,3.4,1.3,7,2,11.1,2s6.6-.5,9.5-1.6c2.9-1.1,5.5-2.6,7.6-4.6,2.2-2,3.8-4.3,5.1-7,1.2-2.7,1.8-5.7,1.8-9s0-1,0-1.8c0-.7,0-1.5-.2-2.3Z"></path><path fill="#FFFFFF" d="M243.2,31.1c2.6-1.4,4.7-3.4,6.2-5.9,1.5-2.5,2.3-5.2,2.3-8.2s-.8-5.8-2.3-8.2c-1.5-2.4-3.6-4.3-6.2-5.7-2.6-1.4-5.6-2.1-8.8-2.1h-23.1v50.3h10.8v-18h8.2l10.5,18h13c0,0-11.8-19.6-11.8-19.6.4-.2.8-.4,1.2-.6ZM239.8,21.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.8v-14.1h10.4c1.6,0,3.1.3,4.3.9,1.2.6,2.2,1.4,2.8,2.5.6,1.1,1,2.3,1,3.7s-.3,2.6-.8,3.6Z"></path><path fill="#FFFFFF" d="M303.6,7.4c-2.4-2.3-5.2-4.2-8.4-5.5-3.2-1.3-6.7-1.9-10.6-1.9s-7.3.6-10.6,1.9c-3.2,1.3-6,3.1-8.5,5.4-2.4,2.3-4.3,5.1-5.5,8.2-1.3,3.2-1.9,6.6-1.9,10.4s.6,7.2,1.9,10.4c1.3,3.2,3.1,5.9,5.5,8.3,2.4,2.3,5.2,4.1,8.5,5.4,3.2,1.3,6.8,1.9,10.6,1.9s7.3-.6,10.5-1.9c3.2-1.3,6-3.1,8.4-5.5,2.4-2.3,4.3-5.1,5.5-8.3,1.3-3.2,1.9-6.6,1.9-10.3s-.6-7.2-1.9-10.3c-1.3-3.2-3.1-5.9-5.5-8.3ZM298.6,32.3c-.8,1.9-1.8,3.6-3.2,5-1.3,1.4-2.9,2.5-4.8,3.3-1.8.8-3.9,1.2-6.1,1.2s-4.2-.4-6-1.2c-1.8-.8-3.5-1.9-4.8-3.3-1.4-1.4-2.4-3.1-3.2-5-.7-1.9-1.1-4-1.1-6.3s.4-4.4,1.1-6.3c.7-1.9,1.8-3.6,3.2-5,1.4-1.4,3-2.5,4.8-3.3,1.8-.8,3.8-1.2,6-1.2s4.3.4,6.1,1.2c1.8.8,3.4,1.9,4.8,3.3s2.4,3.1,3.2,5c.8,1.9,1.2,4,1.2,6.3s-.4,4.4-1.2,6.3Z"></path><path fill="#FFFFFF" d="M342.6,28.2c-.7,1.9-1.4,3.5-1.9,4.9-.5,1.4-1,2.8-1.3,4,0,.1,0,.2,0,.3-.2-.7-.5-1.5-.7-2.2-.3-1-.7-2-1.1-3.2-.4-1.1-.9-2.4-1.5-3.9l-10.9-27.2h-11.8l20.8,50.3h9.8L364.7,1h-11.8l-10.3,27.2Z"></path><polygon fill="#FFFFFF" points="381.2 41.8 381.2 30.2 401.9 30.2 401.9 21 381.2 21 381.2 10.5 405.5 10.5 405.5 1 370.3 1 370.3 51.3 406 51.3 406 41.8 381.2 41.8"></polygon>
+</svg></span>
+  <div style="color:#7E97BC;font-size:8pt;line-height:1.5;margin-top:20pt;max-width:5in">Hargrove Firm is a national law firm practicing in coordination with local counsel in various jurisdictions.</div>
+</section>
+</doc-page>
+
+</x-dc>
+</body>
+</html>

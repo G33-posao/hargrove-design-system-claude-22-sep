@@ -1,0 +1,575 @@
+<style>
+  :root{
+    --navy:#16335D;
+    --navy-deep:#0E2440;
+    --navy-soft:#28406A;
+    --navy-tint:#E8EEF6;
+    --ink:#1A2740;
+    --body:#5A6B7E;
+    --muted:#9AA7B8;
+    --line:#E4E9F0;
+    --line-soft:#EEF2F7;
+    --card:#FFFFFF;
+    --panel:#F4F6F9;
+    --field:#F7F9FC;
+    --radius:14px;
+    --radius-sm:9px;
+    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  .hfw-wrap{
+    background:#fff;font-family:var(--font);color:var(--ink);
+    -webkit-font-smoothing:antialiased;padding:70px 24px;
+  }
+  .hfw-inner{max-width:1180px;margin:0 auto}
+  .hfw-head{text-align:center;max-width:980px;margin:0 auto}
+  .hfw-eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#696969;margin:0 0 14px}
+  .hfw-title{font-size:32px;line-height:1.18;font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:-.01em}
+  .hfw-sub{font-size:16px;line-height:1.6;color:var(--body);margin:0}
+
+  /* ===== App frame (wireframe skeleton) ===== */
+  .hfw-app{
+    min-width:0;flex:1;position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);background:var(--card);
+    box-shadow:0 26px 60px -28px rgba(16,51,93,.30),0 6px 18px -10px rgba(16,51,93,.12);
+    min-height:560px;
+  }
+  .hfw-fbody{display:flex;flex:1;min-height:0}
+
+  /* sidebar */
+  .hfw-side{width:118px;flex:none;background:#E8EBF0;border-right:1px solid var(--line);padding:18px 0 22px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .hfw-logo{width:150px;flex:none;display:flex;align-items:center}
+  .hfw-logo-svg{width:100%;height:auto;display:block}
+  .hfw-nav{display:flex;flex-direction:column;gap:4px;width:100%;align-items:center}
+  .hfw-navitem{width:90px;padding:11px 0;border-radius:11px;display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--body);font-size:10px;text-align:center;transition:all .3s}
+  .hfw-navitem .ic{width:18px;height:18px;border:2px solid currentColor;border-radius:5px;opacity:.9}
+  .hfw-navitem.active{background:#D9DEE6;color:var(--ink)}
+
+  /* main */
+  .hfw-main{min-width:0;flex:1;background:var(--panel);position:relative;overflow:hidden}
+  .hfw-topbar{height:60px;flex:none;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+  .hfw-ava{width:30px;height:30px;border-radius:50%;background:#3B557F;border:2px solid #54709C}
+  .hfw-content{padding:24px 26px;position:relative}
+
+  /* page header row */
+  .hfw-prow{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+  .hfw-h1{font-size:21px;font-weight:700;color:var(--ink)}
+  .hfw-addbtn{margin-left:0;background:var(--navy);color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;transition:transform .3s}
+  .hfw-addbtn .plus{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1}
+  .hfw-search{flex:1;height:40px;background:var(--field);border:1px solid var(--line);border-radius:999px}
+
+  /* clients table */
+  .hfw-table{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .hfw-thead,.hfw-trow{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,2.6fr) minmax(0,1.3fr) minmax(0,1.4fr) minmax(0,1.3fr);align-items:center;padding:14px 20px;gap:10px}
+  .hfw-thead{font-size:12px;font-weight:700;color:var(--ink);border-bottom:1px solid var(--line)}
+  .hfw-trow{border-bottom:1px solid var(--line-soft);font-size:13px;transition:background .3s}
+  .hfw-trow:last-child{border-bottom:0}
+  .hfw-trow.hi{background:var(--navy-tint)}
+  .hfw-cli{display:flex;align-items:center;gap:11px}
+  .hfw-cliava{width:30px;height:30px;border-radius:50%;background:#CBD6E6;flex:none}
+  .hfw-name{font-weight:600;color:var(--ink)}
+  .hfw-bar{height:9px;border-radius:5px;background:var(--line)}
+  .hfw-bar.w70{width:70%}.hfw-bar.w55{width:55%}.hfw-bar.w80{width:80%}
+  .hfw-bar.w40{width:40%}.hfw-bar.w60{width:60%}.hfw-bar.w50{width:50%}
+  .hfw-status{font-size:12px;font-weight:600;color:var(--navy)}
+  .hfw-milestone{font-size:11px;color:var(--muted);background:var(--field);border:1px solid var(--line);border-radius:7px;padding:7px 0;text-align:center}
+  .hfw-milestone.done{color:var(--navy);background:var(--navy-tint);border-color:#D2DEEE;font-weight:600}
+
+  /* progress steps mini (client detail beat) */
+  .hfw-detail{display:none;gap:20px}
+  .hfw-detailcol{flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .hfw-dh{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 14px}
+  .hfw-line{height:10px;border-radius:5px;background:var(--line-soft);margin:9px 0}
+  .hfw-line.s{width:60%}.hfw-line.m{width:85%}
+  .hfw-step2{display:flex;align-items:center;gap:11px;margin:11px 0}
+  .hfw-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);font-weight:600}
+  .hfw-dot.done{background:var(--navy);border-color:var(--navy);color:#fff}
+  .hfw-step2 .tx{font-size:13px;color:var(--ink)}
+
+  /* MODAL (add client / schedule) ===== */
+  .hfw-modal{
+    position:absolute;inset:0;padding-left:118px;display:flex;align-items:center;justify-content:center;
+    background:rgba(14,36,64,.30);opacity:0;pointer-events:none;transition:opacity .4s;
+  }
+  .hfw-modal.show{opacity:1}
+  .hfw-card{
+    width:min(560px,84%);background:#fff;border-radius:var(--radius);padding:26px 26px 22px;
+    box-shadow:0 30px 70px -24px rgba(14,36,64,.5);transform:translateY(10px);transition:transform .4s;
+  }
+  .hfw-modal.show .hfw-card{transform:none}
+  .hfw-mtitle{font-size:19px;font-weight:700;color:var(--ink);margin:0 0 6px}
+  .hfw-mdesc{font-size:12.5px;color:var(--body);margin:0 0 18px;line-height:1.5}
+  .hfw-fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .hfw-field{background:var(--field);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;min-height:46px}
+  .hfw-flabel{font-size:9.5px;color:var(--muted);font-weight:600;letter-spacing:.04em;display:block;margin-bottom:4px;text-transform:uppercase}
+  .hfw-fval{font-size:13px;color:var(--ink);font-weight:500}
+  .hfw-fval.typing::after{content:"";display:inline-block;width:1px;height:13px;background:var(--navy);margin-left:1px;animation:hfcursor .8s infinite;vertical-align:middle}
+  .hfw-full{grid-column:1 / -1}
+  .hfw-mfoot{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:18px}
+  .hfw-btn{font-size:13px;font-weight:600;padding:9px 20px;border-radius:999px;border:1px solid var(--navy);color:var(--navy);background:#fff}
+  .hfw-btn.primary{background:var(--navy);color:#fff}
+
+  /* calendar mini for schedule beat */
+  .hfw-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:6px}
+  .hfw-cal .d{font-size:11px;text-align:center;padding:7px 0;border-radius:7px;color:var(--ink);background:var(--field)}
+  .hfw-cal .d.head{background:none;color:var(--muted);font-weight:700;font-size:9.5px}
+  .hfw-cal .d.sel{background:var(--navy);color:#fff;font-weight:700}
+  .hfw-cal .d.dim{color:var(--muted);background:none}
+
+  /* Accountability: contact-the-legal-team bar */
+  .hfw-legal{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin-top:16px;padding:14px 18px;border-radius:var(--radius);
+    background:var(--navy);color:#fff;
+    opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;
+  }
+  .hfw-legal.show{opacity:1;transform:none}
+  .hfw-legal-l{display:flex;align-items:center;gap:13px}
+  .hfw-legal-ava{width:38px;height:38px;border-radius:50%;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;
+    background:#2C4570;border:1px solid #45618C}
+  .hfw-legal-n{font-size:14px;font-weight:600;color:#fff}
+  .hfw-legal-s{font-size:12px;color:#AEC2DE;margin-top:2px}
+  .hfw-legal-btn{
+    background:#fff;color:var(--navy);font-size:13px;font-weight:700;
+    padding:11px 20px;border-radius:999px;white-space:nowrap;flex:none;
+  }
+  .hfw-legal-btn.pulse{animation:hfpulse 1.3s infinite}
+
+  /* ===== hero headlines (staged entrance, PERMANENT) ===== */
+  .hfw-stage{position:relative}
+  .hfw-wrap h2.hfw-hero{margin:0 0 20px;padding:0;text-align:center}
+  .hfw-wrap h2.hfw-hero span{
+    display:block;
+    font-size:clamp(38px,4.4vw,60px)!important;
+    line-height:1.08!important;font-weight:600!important;
+    letter-spacing:-.015em!important;
+  }
+  .hfw-hero-l1{color:var(--ink);opacity:0;transform:scale(1.12)}
+  .hfw-hero-l1.in{opacity:1;transform:scale(1);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.3,1.04)}
+  .hfw-hero-l2{color:var(--ink);opacity:0;transform:translateY(26px)}
+  .hfw-hero-l2.in{opacity:1;transform:translateY(0);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.8,.3,1.04)}
+  .hfw-cols-anim{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .hfw-cols-anim.in{opacity:1;transform:none}
+
+  /* ===== steps list (always visible, active follows the animation) ===== */
+  .hfw-cols{display:flex;gap:48px;align-items:center;margin-top:76px}
+  .hfw-steps{list-style:none;margin:0;padding:0;flex:0 0 300px;display:flex;flex-direction:column;gap:6px}
+  .hfw-steps li{
+    display:flex;align-items:flex-start;gap:14px;padding:13px 16px;
+    border-radius:14px;background:transparent;transition:background .35s ease;
+  }
+  .hfw-steps .n{
+    width:26px;height:26px;border-radius:50%;flex:none;margin-top:1px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;color:var(--muted);
+    border:1px solid var(--line);background:#fff;
+    transition:background .35s,border-color .35s,color .35s;
+  }
+  .hfw-steps .t{
+    font-size:15.5px;line-height:1.45;font-weight:600;color:var(--body);
+    transition:color .35s;
+  }
+  .hfw-steps li.on{background:var(--navy-tint)}
+  .hfw-steps li.on .n{background:var(--navy);border-color:var(--navy);color:#fff}
+  .hfw-steps li.on .t{color:var(--ink)}
+
+  @keyframes hfcursor{0%,100%{opacity:1}50%{opacity:0}}
+  @keyframes hfpulse{0%{box-shadow:0 0 0 0 rgba(22,51,93,.4)}70%{box-shadow:0 0 0 8px rgba(22,51,93,0)}100%{box-shadow:0 0 0 0 rgba(22,51,93,0)}}
+  .pulse{animation:hfpulse 1.3s infinite}
+  @keyframes hfpulse-strong{
+    0%{box-shadow:0 0 0 0 rgba(22,51,93,.55);transform:scale(1)}
+    45%{box-shadow:0 0 0 16px rgba(22,51,93,0);transform:scale(1.055)}
+    70%{transform:scale(1)}
+    100%{box-shadow:0 0 0 0 rgba(22,51,93,0);transform:scale(1)}
+  }
+  .hfw-addbtn{transition:transform .12s ease}
+  .hfw-addbtn.pulse{animation:hfpulse-strong 1.05s infinite}
+  .hfw-addbtn.press{animation:none;transform:scale(.92)}
+
+  /* ===== hybrid: 761-1200px — horizontalna traka koraka, app punom širinom ===== */
+  @media(max-width:1200px) and (min-width:761px){
+    .hfw-cols{flex-direction:column;align-items:stretch;gap:26px}
+    .hfw-steps{flex:none;flex-direction:row;gap:8px;align-items:stretch}
+    .hfw-steps li{
+      flex:1;min-width:0;flex-direction:column;align-items:flex-start;
+      gap:0;padding:12px 13px;
+    }
+    .hfw-steps .n{margin:0 0 9px}
+    .hfw-steps .t{font-size:13.5px;line-height:1.4}
+  }
+
+  @media(max-width:1440px){
+    .hfw-th-added,.hfw-td-added{display:none}
+    .hfw-thead,.hfw-trow{grid-template-columns:minmax(0,2.4fr) minmax(0,2.6fr) minmax(0,1.4fr) minmax(0,1.3fr)}
+  }
+  .hfw-mini{display:none}
+  @media(max-width:760px){
+    .hfw-mini{display:block;max-height:0;opacity:0;overflow:hidden;background:var(--card);border:0 solid var(--line);border-radius:12px;transition:max-height .45s ease,opacity .45s ease,margin .45s ease,padding .45s ease,border-width .45s ease;padding:0 16px;margin:0}
+    .hfw-mini.show{max-height:150px;opacity:1;border-width:1px;padding:14px 16px;margin:0 0 12px}
+    .hfw-mini-l{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .hfw-mini-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hfw-mini-f{background:var(--field);border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+    .hfw-mini-f .lab{display:block;font-size:9px;font-weight:600;letter-spacing:.1em;color:var(--muted)}
+    .hfw-mini-f .val{font-size:13px;font-weight:600;color:var(--navy);min-height:17px;display:inline-block}
+    .hfw-mini-f .val:after{content:"";display:inline-block;width:1px;height:12px;background:var(--navy);margin-left:1px;vertical-align:-2px;animation:hfblink 1s steps(1) infinite}
+    .hfw-mini-chips{display:flex;gap:8px;flex-wrap:wrap}
+    .hfw-chip{font-size:12px;font-weight:600;color:var(--navy);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:7px 12px;transition:background .3s,color .3s,border-color .3s}
+    .hfw-chip.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+  }
+  @keyframes hfblink{50%{opacity:0}}
+  @media(max-width:760px){
+    .hfw-side{width:64px}
+    .hfw-navitem{font-size:0;width:40px}
+    .hfw-thead,.hfw-trow{grid-template-columns:minmax(0,1.45fr) minmax(0,1.15fr);}
+    .hfw-th-contact,.hfw-td-contact,.hfw-th-added,.hfw-td-added{display:none}
+    .hfw-milestone,.hfw-thead div:last-child{display:none}
+
+    .hfw-logo{width:116px}
+    /* hero + steps */
+    .hfw-wrap h2.hfw-hero span{font-size:38.4px!important;line-height:1.1!important}
+    .hfw-cols{flex-direction:column;align-items:stretch;gap:20px;margin-top:40px}
+    .hfw-steps{flex:none}
+    .hfw-steps li{padding:10px 12px;gap:11px}
+    .hfw-steps .t{font-size:14px}
+    .hfw-steps .n{width:23px;height:23px;font-size:10px}
+
+    /* app frame: static on mobile, compact */
+    .hfw-app{min-height:auto}
+    .hfw-content{padding:18px 14px 16px}
+    .hfw-prow{gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .hfw-h1{font-size:17px;white-space:nowrap}
+    .hfw-addbtn{font-size:12px;padding:8px 14px;white-space:nowrap}
+    .hfw-search{display:none}
+    .hfw-tname{font-size:13px}
+    .hfw-status{font-size:11px;white-space:normal;line-height:1.35}
+    .hfw-milestone{font-size:10px;padding:5px 8px;white-space:normal;text-align:center}
+
+    /* legal bar: stack */
+    .hfw-legal{flex-direction:column;align-items:stretch;gap:12px;padding:14px}
+    .hfw-legal-l{gap:11px}
+    .hfw-legal-n{font-size:13px}
+    .hfw-legal-s{font-size:11px}
+    .hfw-legal-btn{text-align:center;padding:11px 16px}
+
+    /* spotlight prati aktivni korak */
+    .hfw-addbtn,.hfw-legal,.hfw-table,.hfw-legal-btn{transition:box-shadow .5s ease,transform .5s ease}
+    .hfw-mini.hfw-spot{box-shadow:0 0 0 3px rgba(22,51,93,.30),0 12px 28px rgba(22,51,93,.20)}
+    .hfw-spot{box-shadow:0 0 0 3px rgba(22,51,93,.30),0 12px 28px rgba(22,51,93,.20);transform:scale(1.015)}
+    .hfw-legal.hfw-spot{box-shadow:0 0 0 3px rgba(22,51,93,.45),0 12px 28px rgba(22,51,93,.28)}
+
+    /* modals never shown on mobile */
+    .hfw-modal{display:none!important}
+  }
+  @media(max-width:365px){
+    .hfw-status{font-size:10px}
+    .hfw-tname{font-size:12px}
+    .hfw-name{font-size:12px}
+  }
+  @media(max-width:330px){
+    .hfw-status{overflow-wrap:anywhere}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .hfw-spot{transform:none}
+  }
+</style>
+
+
+<div class="hfw-wrap">
+  <div class="hfw-inner">
+    <div class="hfw-stage" id="hfwStage">
+
+    <div class="hfw-head">
+      <p class="hfw-eyebrow">The Hargrove Platform</p>
+      <h2 class="hfw-hero">
+        <span class="hfw-hero-l1" id="hfwHl1">See where your plan stands.</span>
+        <span class="hfw-hero-l2" id="hfwHl2">Know who stands behind it.</span>
+      </h2>
+    </div>
+
+    <div class="hfw-cols hfw-cols-anim" id="hfwCols">
+
+    <ol class="hfw-steps" id="hfwSteps">
+      <li><span class="n">01</span><span class="t">Start a new plan in seconds</span></li>
+      <li><span class="n">02</span><span class="t">Partner with a licensed Hargrove attorney</span></li>
+      <li><span class="n">03</span><span class="t">Track your progress</span></li>
+      <li><span class="n">04</span><span class="t">One tap to communicate with your attorney</span></li>
+    </ol>
+
+    <div class="hfw-app" id="hfwApp">
+      <div class="hfw-topbar"><div class="hfw-logo" id="hfwLogo"><svg class="hfw-logo-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="98 142 404 54">
+  
+  
+  <polygon fill="#F8F8F8" points="132.4 164.4 111 164.4 111 144.4 100 144.4 100 193.9 111 193.9 111 174 132.4 174 132.4 193.9 143.4 193.9 143.4 144.4 132.4 144.4 132.4 164.4"/>
+  <path fill="#F8F8F8" d="M168.7,144.4l-20.2,49.6h10.9l4.1-10.4h19.7l4,10.4h11.3l-20-49.6h-9.8ZM166.9,175l3-7.6c.4-1.1.8-2.2,1.2-3.3.4-1.1.9-2.3,1.2-3.5.4-1.2.8-2.4,1.1-3.5.4,1.1.7,2.3,1.1,3.5.4,1.3.9,2.6,1.3,3.8.4,1.2.8,2.1,1.1,2.9l3,7.8h-13.1Z"/>
+  <path fill="#F8F8F8" d="M235.2,174c2.6-1.4,4.6-3.3,6.1-5.8,1.5-2.4,2.2-5.1,2.2-8.1s-.7-5.7-2.2-8.1c-1.5-2.4-3.5-4.2-6.1-5.6-2.6-1.4-5.5-2.1-8.7-2.1h-22.7v49.6h10.6v-17.8h8.1l10.4,17.8h12.8c0,0-11.6-19.3-11.6-19.3.4-.2.8-.4,1.1-.6ZM231.8,164.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.6v-14h10.2c1.6,0,3,.3,4.3.9,1.2.6,2.2,1.4,2.8,2.4.6,1,1,2.3,1,3.7s-.3,2.5-.8,3.6Z"/>
+  <path fill="#F8F8F8" d="M300.3,168.8c0-.8-.1-1.4-.2-1.9h-23.8v8.9h13.2c0,1.2-.3,2.4-.9,3.5-.6,1.2-1.5,2.2-2.6,3.1-1.1.9-2.4,1.5-3.8,2-1.4.5-3,.7-4.7.7s-4.4-.4-6.5-1.2c-2-.8-3.8-2-5.2-3.4-1.5-1.4-2.7-3.1-3.5-5.1-.9-2-1.3-4-1.3-6.3s.4-4.4,1.2-6.3c.8-1.9,1.9-3.6,3.4-5,1.5-1.4,3.2-2.5,5.1-3.3,1.9-.8,4-1.2,6.3-1.2s3.2.2,4.7.7c1.5.4,3,1.1,4.4,1.9,1.4.8,2.7,1.8,4,3l6.8-6.9c-1.4-1.6-3.1-3-5.1-4.3-2.1-1.2-4.3-2.2-6.8-2.9-2.5-.7-5.1-1.1-7.9-1.1-4,0-7.6.6-10.9,1.9-3.3,1.3-6.2,3.1-8.7,5.3-2.5,2.3-4.4,5-5.7,8.1-1.3,3.1-2,6.5-2,10.1s.6,7,1.9,10.1c1.3,3.1,3.1,5.8,5.5,8.1,2.4,2.3,5.2,4.1,8.5,5.4,3.3,1.3,6.9,1.9,10.9,1.9s6.5-.5,9.4-1.6c2.9-1.1,5.4-2.6,7.5-4.5,2.1-1.9,3.8-4.3,5-6.9,1.2-2.7,1.8-5.6,1.8-8.9s0-1,0-1.7c0-.7,0-1.5-.1-2.2Z"/>
+  <path fill="#F8F8F8" d="M339.6,174c2.6-1.4,4.6-3.3,6.1-5.8,1.5-2.4,2.2-5.1,2.2-8.1s-.7-5.7-2.2-8.1c-1.5-2.4-3.5-4.2-6.1-5.6-2.6-1.4-5.5-2.1-8.7-2.1h-22.7v49.6h10.6v-17.8h8.1l10.4,17.8h12.8c0,0-11.6-19.3-11.6-19.3.4-.2.8-.4,1.1-.6ZM336.2,164.1c-.5,1.1-1.3,1.9-2.3,2.5-1,.6-2.2.9-3.5.9h-11.6v-14h10.2c1.6,0,3,.3,4.3.9,1.2.6,2.2,1.4,2.8,2.4.6,1,1,2.3,1,3.7s-.3,2.5-.8,3.6Z"/>
+  <path fill="#F8F8F8" d="M399.1,150.7c-2.4-2.3-5.1-4.1-8.3-5.4-3.2-1.3-6.6-1.9-10.5-1.9s-7.2.6-10.4,1.9c-3.2,1.3-6,3.1-8.3,5.3-2.4,2.3-4.2,5-5.5,8.1-1.3,3.1-1.9,6.5-1.9,10.3s.6,7.1,1.9,10.2c1.3,3.1,3.1,5.9,5.5,8.1,2.4,2.3,5.1,4.1,8.3,5.3,3.2,1.3,6.7,1.9,10.5,1.9s7.2-.6,10.4-1.9c3.2-1.3,5.9-3.1,8.3-5.4,2.4-2.3,4.2-5,5.5-8.1,1.3-3.1,1.9-6.5,1.9-10.2s-.6-7.1-1.9-10.2c-1.3-3.1-3.1-5.8-5.5-8.1ZM394.2,175.2c-.8,1.9-1.8,3.5-3.1,4.9-1.3,1.4-2.9,2.5-4.7,3.3-1.8.8-3.8,1.2-6,1.2s-4.1-.4-5.9-1.2c-1.8-.8-3.4-1.9-4.8-3.3-1.4-1.4-2.4-3-3.1-4.9-.7-1.9-1.1-4-1.1-6.2s.4-4.3,1.1-6.2c.7-1.9,1.7-3.5,3.1-4.9,1.4-1.4,3-2.5,4.8-3.3,1.8-.8,3.8-1.2,5.9-1.2s4.2.4,6,1.2c1.8.8,3.4,1.9,4.7,3.3s2.4,3,3.1,4.9c.8,1.9,1.1,4,1.1,6.2s-.4,4.3-1.1,6.2Z"/>
+  <path fill="#F8F8F8" d="M437.6,171.2c-.7,1.8-1.4,3.5-1.9,4.9-.5,1.4-1,2.7-1.3,4,0,.1,0,.2,0,.3-.2-.7-.5-1.4-.7-2.2-.3-1-.7-2-1.1-3.1-.4-1.1-.9-2.4-1.5-3.9l-10.7-26.8h-11.7l20.5,49.6h9.6l20.6-49.6h-11.6l-10.1,26.8Z"/>
+  <polygon fill="#F8F8F8" points="475.6 184.6 475.6 173.2 496 173.2 496 164.1 475.6 164.1 475.6 153.7 499.5 153.7 499.5 144.4 464.8 144.4 464.8 193.9 500 193.9 500 184.6 475.6 184.6"/>
+</svg></div><div class="hfw-ava"></div></div>
+
+      <div class="hfw-fbody">
+      <!-- sidebar -->
+      <div class="hfw-side">
+                <div class="hfw-nav">
+          <div class="hfw-navitem active"><span class="ic"></span>Clients</div>
+          <div class="hfw-navitem"><span class="ic"></span>Meetings</div>
+          <div class="hfw-navitem"><span class="ic"></span>Resources</div>
+          <div class="hfw-navitem"><span class="ic"></span>Support</div>
+          <div class="hfw-navitem"><span class="ic"></span>Schedule Demo</div>
+        </div>
+      </div>
+
+      <!-- main -->
+      <div class="hfw-main">
+        <div class="hfw-content">
+
+          <!-- list view -->
+          <div id="hfwList">
+            <div class="hfw-prow">
+              <div class="hfw-h1">My clients</div>
+              <div class="hfw-addbtn" id="hfwAdd"><span class="plus">+</span> Add new client</div>
+              <div class="hfw-search"></div>
+            </div>
+            <div class="hfw-mini" id="hfwMiniContact">
+              <div class="hfw-mini-l">Main contact</div>
+              <div class="hfw-mini-fields">
+                <div class="hfw-mini-f"><span class="lab">FIRST NAME</span><span class="val" id="hfwMf1"></span></div>
+                <div class="hfw-mini-f"><span class="lab">LAST NAME</span><span class="val" id="hfwMf2"></span></div>
+              </div>
+            </div>
+            <div class="hfw-mini" id="hfwMiniCal">
+              <div class="hfw-mini-l">Schedule a consultation</div>
+              <div class="hfw-mini-chips">
+                <span class="hfw-chip">Tue 2:30 PM</span><span class="hfw-chip" id="hfwChipSel">Wed 10:00 AM</span><span class="hfw-chip">Thu 4:15 PM</span>
+              </div>
+            </div>
+            <div class="hfw-table">
+              <div class="hfw-thead">
+                <div>Name</div><div class="hfw-th-contact">Contact</div><div class="hfw-th-added">Added on</div><div>Status</div><div>Milestones</div>
+              </div>
+              <div class="hfw-trow" id="hfwRow0">
+                <div class="hfw-cli"><span class="hfw-cliava"></span><span class="hfw-name">Carla Farrell</span></div>
+                <div class="hfw-td-contact"><div class="hfw-bar w70"></div></div>
+                <div class="hfw-td-added"><div class="hfw-bar w55"></div></div>
+                <div class="hfw-status">Ready to invite</div>
+                <div class="hfw-milestone">In progress</div>
+              </div>
+              <div class="hfw-trow" id="hfwRow1">
+                <div class="hfw-cli"><span class="hfw-cliava"></span><span class="hfw-name">Brandon Baker</span></div>
+                <div class="hfw-td-contact"><div class="hfw-bar w80"></div></div>
+                <div class="hfw-td-added"><div class="hfw-bar w40"></div></div>
+                <div class="hfw-status">In review</div>
+                <div class="hfw-milestone done">Attorney review</div>
+              </div>
+              <div class="hfw-trow" id="hfwRowNew">
+                <div class="hfw-cli"><span class="hfw-cliava"></span><span class="hfw-name" id="hfwNewName">—</span></div>
+                <div class="hfw-td-contact"><div class="hfw-bar w60"></div></div>
+                <div class="hfw-td-added"><div class="hfw-bar w50"></div></div>
+                <div class="hfw-status" id="hfwNewStatus">Draft</div>
+                <div class="hfw-milestone" id="hfwNewMile">Nothing yet</div>
+              </div>
+            </div>
+
+            <!-- Accountability: the key attorney-contact button -->
+            <div class="hfw-legal" id="hfwLegal">
+              <div class="hfw-legal-l">
+                <span class="hfw-legal-ava">JH</span>
+                <div>
+                  <div class="hfw-legal-n">A licensed attorney is on your plan</div>
+                  <div class="hfw-legal-s">Real legal review — not a vendor, not a bot.</div>
+                </div>
+              </div>
+              <span class="hfw-legal-btn" id="hfwLegalBtn">Contact the legal team</span>
+            </div>
+          </div>
+
+        </div><!-- /content -->
+
+
+      </div><!-- /main -->
+      </div><!-- /fbody -->
+
+      <!-- MODAL: add client contact -->
+      <div class="hfw-modal" id="hfwModalAdd">
+        <div class="hfw-card">
+          <h3 class="hfw-mtitle">Main contact</h3>
+          <p class="hfw-mdesc">The person who manages the family's accounts and receives the invitation to start.</p>
+          <div class="hfw-fgrid">
+            <div class="hfw-field"><span class="hfw-flabel">First name</span><span class="hfw-fval" id="hfwF1"></span></div>
+            <div class="hfw-field"><span class="hfw-flabel">Last name</span><span class="hfw-fval" id="hfwF2"></span></div>
+            <div class="hfw-field hfw-full"><span class="hfw-flabel">Email</span><span class="hfw-fval" id="hfwF3"></span></div>
+          </div>
+          <div class="hfw-mfoot">
+            <span class="hfw-btn">Cancel</span>
+            <span class="hfw-btn primary" id="hfwNext">Next</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: schedule consultation -->
+      <div class="hfw-modal" id="hfwModalCal">
+        <div class="hfw-card">
+          <h3 class="hfw-mtitle">Schedule initial consultation</h3>
+          <p class="hfw-mdesc">Pick a time with a licensed Hargrove attorney — or let the platform assign one.</p>
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div style="flex:none;width:150px">
+              <div style="font-size:14px;font-weight:700;color:var(--ink);line-height:1.2">Initial<br>Consultation</div>
+              <div style="font-size:12px;color:var(--body);margin:6px 0 16px">1 hour</div>
+              <div style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Attorney</div>
+              <div style="background:var(--navy);color:#fff;font-size:12px;font-weight:600;padding:9px 12px;border-radius:999px;display:flex;align-items:center;gap:8px"><span style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.25);display:inline-flex;align-items:center;justify-content:center;font-size:10px">H</span>Hargrove attorney</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;margin-bottom:8px">March 2026</div>
+              <div class="hfw-cal">
+                <div class="d head">S</div><div class="d head">M</div><div class="d head">T</div><div class="d head">W</div><div class="d head">T</div><div class="d head">F</div><div class="d head">S</div>
+                <div class="d dim">1</div><div class="d">2</div><div class="d">3</div><div class="d">4</div><div class="d">5</div><div class="d">6</div><div class="d">7</div>
+                <div class="d">8</div><div class="d">9</div><div class="d">10</div><div class="d">11</div><div class="d">12</div><div class="d">13</div><div class="d">14</div>
+                <div class="d">15</div><div class="d">16</div><div class="d">17</div><div class="d">18</div><div class="d sel" id="hfwCalSel">19</div><div class="d">20</div><div class="d">21</div>
+              </div>
+            </div>
+          </div>
+          <div class="hfw-mfoot">
+            <span class="hfw-btn">Skip</span>
+            <span class="hfw-btn primary" id="hfwSchedule">Schedule</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /app -->
+    </div><!-- /cols -->
+    </div><!-- /stage -->
+  </div>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('hfwStage');
+  var hl1=document.getElementById('hfwHl1'),hl2=document.getElementById('hfwHl2');
+  var cols=document.getElementById('hfwCols');
+  var steps=document.getElementById('hfwSteps').children;
+  var add=document.getElementById('hfwAdd');
+  var mAdd=document.getElementById('hfwModalAdd'),mCal=document.getElementById('hfwModalCal');
+  var f1=document.getElementById('hfwF1'),f2=document.getElementById('hfwF2'),f3=document.getElementById('hfwF3');
+  var newName=document.getElementById('hfwNewName'),newStatus=document.getElementById('hfwNewStatus'),newMile=document.getElementById('hfwNewMile');
+  var rowNew=document.getElementById('hfwRowNew');
+  var legal=document.getElementById('hfwLegal'),legalBtn=document.getElementById('hfwLegalBtn');
+  var timers=[];
+
+  function setStep(i){
+    for(var k=0;k<steps.length;k++)steps[k].classList.toggle('on',k===i);
+  }
+  function type(el,txt,done){
+    el.classList.add('typing');el.textContent='';
+    var i=0;(function tick(){
+      if(i<=txt.length){el.textContent=txt.slice(0,i);i++;timers.push(setTimeout(tick,42));}
+      else{el.classList.remove('typing');if(done)done();}
+    })();
+  }
+  function reset(){
+    timers.forEach(clearTimeout);timers=[];
+    mAdd.classList.remove('show');mCal.classList.remove('show');
+    add.classList.remove('pulse','press');
+    f1.textContent='';f2.textContent='';f3.textContent='';
+    newName.textContent='\u2014';newStatus.textContent='Draft';
+    newMile.textContent='Nothing yet';newMile.classList.remove('done');
+    rowNew.classList.remove('hi');
+    legal.classList.remove('show');legalBtn.classList.remove('pulse');
+    setStep(-1);
+  }
+
+  function run(){
+    reset();
+    // BEAT 1
+    // beat 1: pregled — nijedan korak naglašen
+    timers.push(setTimeout(function(){ add.classList.add('pulse'); },400));
+    timers.push(setTimeout(function(){ add.classList.remove('pulse','press'); add.classList.add('press'); },1100));
+    // BEAT 2
+    timers.push(setTimeout(function(){ add.classList.remove('press'); mAdd.classList.add('show'); setStep(0); },1300));
+    timers.push(setTimeout(function(){ type(f1,'Sammy'); },1900));
+    timers.push(setTimeout(function(){ type(f2,'Larson'); },2600));
+    timers.push(setTimeout(function(){ type(f3,'sammy@larson.org'); },3300));
+    timers.push(setTimeout(function(){ newName.textContent='Sammy Larson'; },4300));
+    // BEAT 3
+    timers.push(setTimeout(function(){ mAdd.classList.remove('show'); },4600));
+    timers.push(setTimeout(function(){ mCal.classList.add('show'); setStep(1); },5000));
+    timers.push(setTimeout(function(){ document.getElementById('hfwCalSel').classList.add('pulse'); },5700));
+    // BEAT 4
+    timers.push(setTimeout(function(){ mCal.classList.remove('show'); },6900));
+    timers.push(setTimeout(function(){
+      rowNew.classList.add('hi');
+      newStatus.textContent='Consultation set';
+      newMile.textContent='Initial consultation';newMile.classList.add('done');
+      setStep(2);
+    },7400));
+    // BEAT 5
+    timers.push(setTimeout(function(){ legal.classList.add('show'); setStep(3); },9000));
+    timers.push(setTimeout(function(){ legalBtn.classList.add('pulse'); },9700));
+    timers.push(setTimeout(run,12700));
+  }
+
+  var CAP_N=4;
+  function mobileRun(){
+    var tableEl=document.querySelector('.hfw-table');
+    var miniC=document.getElementById('hfwMiniContact'),miniK=document.getElementById('hfwMiniCal');
+    var mf1=document.getElementById('hfwMf1'),mf2=document.getElementById('hfwMf2'),chip=document.getElementById('hfwChipSel');
+    var spotEls=[add,miniC,tableEl,legal];
+    function spot(n){for(var k=0;k<spotEls.length;k++){if(spotEls[k])spotEls[k].classList.remove('hfw-spot');}if(spotEls[n])spotEls[n].classList.add('hfw-spot');}
+    var mT=[];
+    function at(ms,fn){mT.push(setTimeout(fn,ms));}
+    function mtype(el,txt){var i=0;(function tk(){if(i<=txt.length){el.textContent=txt.slice(0,i);i++;mT.push(setTimeout(tk,45));}})();}
+    function cycle(){
+      for(var k=0;k<mT.length;k++)clearTimeout(mT[k]);mT=[];
+      // reset
+      miniC.classList.remove('show');miniK.classList.remove('show');chip.classList.remove('sel');
+      mf1.textContent='';mf2.textContent='';
+      newName.textContent='\u2014';newStatus.textContent='Draft';
+      rowNew.classList.remove('hi');legal.classList.remove('show');legalBtn.classList.remove('pulse');
+      // korak 1: upis imena
+      at(50,function(){setStep(0);spot(0);});
+      at(250,function(){add.classList.add('press');});
+      at(500,function(){add.classList.remove('press');miniC.classList.add('show');});
+      at(900,function(){mtype(mf1,'Sammy');});
+      at(1500,function(){mtype(mf2,'Larson');});
+      at(2300,function(){newName.textContent='Sammy Larson';});
+      at(2500,function(){miniC.classList.remove('show');});
+      // korak 2: termin s odvjetnikom
+      at(2800,function(){setStep(1);spot(1);miniK.classList.add('show');});
+      at(4100,function(){chip.classList.add('sel');});
+      at(5300,function(){miniK.classList.remove('show');});
+      // korak 3: status se mijenja
+      at(5600,function(){setStep(2);spot(2);});
+      at(5900,function(){newStatus.textContent='Consultation set';rowNew.classList.add('hi');});
+      // korak 4: legal bar
+      at(8400,function(){setStep(3);spot(3);legal.classList.add('show');});
+      at(9100,function(){legalBtn.classList.add('pulse');});
+      at(11200,cycle);
+    }
+    cycle();
+  }
+
+  var isMobile=window.matchMedia&&window.matchMedia('(max-width:760px)').matches;
+  var started=false;
+  function startSeq(){
+    if(started)return;started=true;
+    setTimeout(function(){hl1.classList.add('in');},200);
+    setTimeout(function(){hl2.classList.add('in');},750);
+    setTimeout(function(){cols.classList.add('in');},1500);
+    if(isMobile){
+      setTimeout(function(){mobileRun();},2100);
+    }else{
+      setTimeout(run,2100);
+    }
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      for(var i=0;i<es.length;i++){
+        if(es[i].isIntersecting){startSeq();io.disconnect();break;}
+      }
+    },{threshold:.25});
+    io.observe(stage);
+  }else{startSeq();}
+})();
+</script>

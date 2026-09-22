@@ -1,0 +1,42 @@
+:root{
+  /* ---- Brand palette (official brand sheet) ---- */
+  --hg-navy:#16335D;          /* primary — dominant, the only accent */
+  --hg-black:#000000;
+  --hg-grey-600:#696969;      /* body text */
+  --hg-grey-400:#999999;      /* muted labels */
+  --hg-panel:#F8F8F8;         /* light surface / card fill */
+  --hg-white:#FFFFFF;
+
+  /* ---- Working tokens (derived from production) ---- */
+  --hg-card-border:#E3E7EE;         /* card / hairline on light */
+  --hg-subhead-navy:#CCCCCC;        /* subhead on navy */
+  --hg-subhead-navy-cool:#C9D6EA;   /* cooler subhead on navy */
+  --hg-hairline-navy:#40587A;       /* hairline / divider on navy */
+  --hg-link-navy:#9FC2F0;           /* link on navy */
+
+  /* Tone-on-tone navy panels (for cards/tiles on a navy field) */
+  --hg-navy-100:#2C4A7C;
+  --hg-navy-200:#22406E;
+  --hg-navy-300:#1B3A68;
+  --hg-navy-900:#0F2440;            /* deepest, for cover vignette */
+
+  /* ---- Semantic aliases ---- */
+  --text-heading:var(--hg-navy);
+  --text-body:var(--hg-grey-600);
+  --text-muted:var(--hg-grey-400);
+  --text-on-navy:var(--hg-white);
+  --text-on-navy-muted:var(--hg-subhead-navy);
+  --link:var(--hg-navy);
+  --link-on-navy:var(--hg-link-navy);
+
+  --surface-page:var(--hg-white);
+  --surface-alt:var(--hg-panel);
+  --surface-card:var(--hg-panel);
+  --surface-navy:var(--hg-navy);
+
+  --border-card:var(--hg-card-border);
+  --border-on-navy:var(--hg-hairline-navy);
+
+  --accent:var(--hg-navy);          /* single accent — navy only */
+  --chip-navy:var(--hg-navy);       /* icon-chip fill */
+}

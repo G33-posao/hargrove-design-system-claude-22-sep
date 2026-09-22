@@ -1,0 +1,41 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Core" subtitle="Button · Eyebrow · Card · IconChip · Logo" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<style>html,body{margin:0}body{font-family:var(--font-sans);padding:26px;background:#fff}.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px}.navy{background:#16335D;border-radius:12px;padding:20px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Button, Eyebrow, Card, IconChip, Logo } = window.HargroveDesignSystem_607ee2;
+const Ico = ({n})=>{const r=React.useRef();React.useEffect(()=>{if(r.current&&window.lucide)r.current.innerHTML='';window.lucide&&window.lucide.createIcons({icons:window.lucide.icons,nameAttr:'data-lucide'});},[]);return <i ref={r} data-lucide={n} style={{width:22,height:22}}/>;};
+function Demo(){
+  React.useEffect(()=>{window.lucide&&window.lucide.createIcons();},[]);
+  return <div>
+    <div className="row">
+      <Button variant="primary" size="lg">Schedule a Consultation</Button>
+      <Button variant="secondary">See How It Works</Button>
+      <Button variant="ghost">Learn more</Button>
+      <Button variant="primary" disabled>Disabled</Button>
+    </div>
+    <div className="row navy">
+      <Button variant="onNavy">Contact the legal team</Button>
+      <Logo variant="white" width={150} basePath="../.." />
+    </div>
+    <div className="row">
+      <div><Eyebrow>Why Hargrove?</Eyebrow><div style={{color:'#16335D',fontWeight:600,fontSize:22,letterSpacing:'-0.015em',marginTop:6}}>Built on four commitments</div></div>
+    </div>
+    <div className="row">
+      <IconChip><i data-lucide="shield-check" style={{width:22,height:22}}></i></IconChip>
+      <IconChip><i data-lucide="eye" style={{width:22,height:22}}></i></IconChip>
+      <IconChip size={56}><i data-lucide="scale" style={{width:26,height:26}}></i></IconChip>
+      <Card interactive style={{maxWidth:260}}><div style={{fontWeight:700,color:'#16335D'}}>Card</div><div style={{color:'#696969',fontSize:14,marginTop:4}}>Panel fill, hairline border, soft navy shadow.</div></Card>
+      <Card tone="navy" style={{maxWidth:200}}><div style={{fontWeight:700}}>Navy tile</div><div style={{color:'#C9D6EA',fontSize:14,marginTop:4}}>Inverted tone.</div></Card>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+setTimeout(()=>window.lucide&&window.lucide.createIcons(),100);
+</script>
+</body></html>
